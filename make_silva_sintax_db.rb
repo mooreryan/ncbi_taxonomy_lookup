@@ -63,7 +63,7 @@ opts = Optimist.options do
   EOS
 
   opt(:silva_tax,
-      "Input file",
+      "silva ltp proj taxonomy",
       type: :string)
   opt(:names,
       "names.dmp",
@@ -71,7 +71,7 @@ opts = Optimist.options do
   opt(:nodes,
       "nodes.dmp",
       type: :string)
-  opt(:silva_ltp,
+  opt(:silva_seqs,
       "silva ltp proj fasta",
       type: :string)
   opt(:outdir,
@@ -89,11 +89,11 @@ FileUtils.mkdir_p outdir
 silva_tax_f = opts[:silva_tax]
 names_f = opts[:names]
 nodes_f = opts[:nodes]
-fasta_f = opts[:silva_ltp]
+fasta_f = opts[:silva_seqs]
 
 dirname = File.dirname fasta_f
 extname = File.extname fasta_f
-basename = File.basename fasta_f
+basename = File.basename fasta_f, extname
 
 fasta_tax_f = File.join outdir, "#{basename}.sintax.fasta"
 lineages_with_na_f = File.join outdir, "#{basename}.sintax.lineages_with_missing_vals.txt"
